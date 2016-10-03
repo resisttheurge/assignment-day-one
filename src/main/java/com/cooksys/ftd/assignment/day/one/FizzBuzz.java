@@ -26,7 +26,9 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if b is zero
      */
     public static boolean divides(int a, int b) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        if(b == 0) throw new IllegalArgumentException();
+        else if(a%b == 0) return true;
+        else return false;
     }
 
     /**
@@ -41,7 +43,19 @@ public class FizzBuzz {
      * @return a message according to the format above, or null if n is not divisible by either 3 or 5
      */
     public static String message(int n) {
-        throw new NotImplementedException();
+        int check = 0;
+        if(divides(n,3)) check++;
+        if(divides(n,5)) check+=2;
+        switch(check) {
+        	case(1) :
+        		return n+": Fizz";
+        	case(2) :
+        		return n+": Buzz";
+        	case(3) :
+        		return n+": FizzBuzz";
+        	default :
+        		return null;
+        }
     }
 
     /**
@@ -55,7 +69,20 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if the given end is less than the given start
      */
     public static String[] messages(int start, int end) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        if(end < start) throw new IllegalArgumentException();
+        int startSize = end-start;
+        String[] init = new String[startSize];
+        int endSize = 0;
+        for(int i = 0; i < startSize; i++) {
+        	if(message(start) != null) endSize++;
+        	init[i] = message(start++);
+        }
+        String[] result = new String[endSize];
+        int j = 0;
+        for(String x : init) {
+        	if(x != null) result[j++] = x;
+        }
+        return result;
     }
 
     /**
@@ -63,7 +90,9 @@ public class FizzBuzz {
      * the relevant messages to sysout
      */
     public static void main(String[] args) {
-        throw new NotImplementedException();
+        String[] result = messages(1,116);
+        for(String x : result) System.out.println(x);
+        
     }
 
 }
